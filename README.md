@@ -4,12 +4,6 @@
 
 
 
-[Day-14.md](day\Day-14.md) 
-
-[Day-13.md](day\Day-13.md) 
-
-
-
 ------
 
 使用md每日一个工作文件放在day文件夹下，在Summary.md文件中引用即可。
