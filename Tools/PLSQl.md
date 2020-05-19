@@ -1,3 +1,14 @@
+PL/SQl中文"?"乱码
+
+新增系统环境变量一：LANG=zh_CN.GBK
+
+新增系统环境变量二：
+NLS_LANG=AMERICAN_AMERICA.ZHS16GBK 
+或者是 
+NLS_LANG=SIMPLIFIED CHINESE_CHINA.ZHS16GBK 
+
+------
+
 ### springboot整合freemarker
 
 1、pom文件添加依赖
@@ -24,7 +35,6 @@ public String welcome(Map<String, Object> model) {
     return "action/list";
 }
 ```
-
 
 ------
 
@@ -100,6 +110,3 @@ public @interface RestController {
 
 }
 ```
-
-
-
