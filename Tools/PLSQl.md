@@ -7,12 +7,11 @@ NLS_LANG=AMERICAN_AMERICA.ZHS16GBK
 或者是 
 NLS_LANG=SIMPLIFIED CHINESE_CHINA.ZHS16GBK 
 
-
-
 ------
 
 
-#### Oracle数据库建表完整sql
+
+##### Oracle数据库建表完整sql
 
 ```plsql
 -- CREATE TABLE  创建小程序卡片表
@@ -86,8 +85,6 @@ comment on column GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD.UPDATED_BY
 comment on column GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD.UPDATED_DATE
   is '最后修改时间';
 
- 
-
 
 --CREAT PUBLIC SYNONYM  创建同义词
 CREATE PUBLIC SYNONYM GIM_CLOUD_MINIPROGRAM_CARD FOR GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD;
@@ -112,4 +109,69 @@ GRANT SELECT ON GIM_CLOUD_MINIPROGRAM_CARD TO R_GIMDATA_QRY,DSPDSG,GBDSQP,MISIOC
 
 ```
 
+
+
+##### 建表语句2:
+
+```plsql
+	create table table_name(
+        id numner(12),		
+        text verchar2(255 CHAR) not null,--char类型,一个汉字占一个长度
+        PID varchar2(32 BYTE) NOT NULL,  --byte类型,UTF8一个汉字占大约两个长度
+        status number(1) DEFAULT 0 null  --添加默认值 如果为空默认值就为0
+    )
+
+    --添加主键
+    ALTER TABLE "test"."table_name" ADD PRIMARY KEY ("ID");
+
+    --添加注释
+    comment on column table_name.id is '主键';
+    comment on column table_name.text is '说明';
+    comment on column table_name.status is '状态';
+
+
+	--主键自增 ,1新建一个序列
+	CREATE SEQUENCE cw_bl_id_increment  
+	INCREMENT BY 1  
+	START WITH 1  
+	MAXVALUE 1.0E20  
+	MINVALUE 1  
+	NOCYCLE  
+	CACHE 20  
+	NOORDER  
+
+	--主键自增 ,2创建一个触发器
+	create or replace trigger 触发器名
+	before insert on 表名
+	for each row
+	begin
+	select 序列名.nextval into :new.id from dual;
+	end;
+
+	--添加字段
+    ALTER TABLE table_name ADD (
+        RS_SFTG NUMBER (1),
+        RS_TGJE VARCHAR2 (255 CHAR)
+    );
+
+	--删除字段
+	alter table table_name drop column RS_SFTG ;
+
+```
+
+
+
+###### 序列参数说明:
+
+```plsql
+CREATE SEQUENCE SEQNAME //序列名字         
+INCREMENT BY 1   //每次自增1， 也可写非0的任何整数，表示自增，或自减  
+START WITH 1     //以该值开始自增或自减  
+MAXVALUE 1.0E20  //最大值；设置NOMAXVALUE表示无最大值  
+MINVALUE 1       //最小值；设置NOMINVALUE表示无最大值  
+CYCLE or NOCYCLE //设置到最大值后是否循环；  
+CACHE 20         //指定可以缓存 20 个值在内存里；如果设置不缓存序列，则写NOCACHE  
+ORDER or NOORDER //设置是否按照请求的顺序产生序列  
+
+```
 

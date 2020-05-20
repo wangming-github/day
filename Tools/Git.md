@@ -20,11 +20,15 @@
 
   ⚡ git rm -r --cached *.class   忽略所有的 class文件
 
+  ⚡  git rm -r --cached  filename  忽略已经托管的filename  文件
+
 
 
 ##### 测试SSH配置链接
 
   ⚡  ssh -T remotesource    测试配置
+
+
 
 ##### mac下配置多个git账号并进行账号切换
 
