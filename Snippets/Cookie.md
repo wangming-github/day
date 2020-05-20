@@ -1,4 +1,5 @@
-@CookieValue
+#### @CookieValue
+
 ```java
 /**
  * @description 验证用户信息
@@ -23,7 +24,8 @@ public ResponseEntity<UserInfo> verifyUser(@CookieValue("LY_TOKEN") String token
 
 ------
 
-Cookie类setMaxAge过期时间
+##### Cookie类setMaxAge过期时间
+
 setMaxAge() 设置值大于0, 将cookie存储于本地磁盘, 过期后删除
 setMaxAge() 设置值小于0, cookie不会保存于本地, 浏览器会话结束后, 将会删除, 经过在Mac上的chorme测试, 需要结束进程后cookie才会从内存中删除
 setMaxAge() 设置值等于0, 立即删除cookie
@@ -69,7 +71,7 @@ public Result login(Model model, Boolean isKeepPass, String username,
 }
 ```
 
-
+##### session.invalidate()
 
 session.invalidate()是将session设置为失效，一般在退出时使用，但要注意的是：session失效的同时 浏览器会立即创建一个新的session的，你第一个session已经失效了 所以调用它的getAttribute方法时候一定会抛出NullPointerException的
 

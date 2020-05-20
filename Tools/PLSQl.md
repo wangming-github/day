@@ -1,4 +1,4 @@
-PL/SQl中文"?"乱码
+#### PL/SQl中文"?"乱码
 
 新增系统环境变量一：LANG=zh_CN.GBK
 
@@ -7,106 +7,109 @@ NLS_LANG=AMERICAN_AMERICA.ZHS16GBK
 或者是 
 NLS_LANG=SIMPLIFIED CHINESE_CHINA.ZHS16GBK 
 
-------
 
-### springboot整合freemarker
-
-1、pom文件添加依赖
-
-2、新建spring web项目，会自动生成application.properties.
-
-3、在配置文件中，设置以下两个参数
-
-```properties
-
-#设定ftl文件路径
-spring.freemarker.template-loader-path=classpath:/templates
-#设定静态文件路径，js,css等
-spring.mvc.static-path-pattern=/static/**
-```
-
-controller跳转页面如下：templates/action/list.ftl页面 
-
-```java
-@GetMapping("/welcome")
-public String welcome(Map<String, Object> model) {
-    model.put("time", new Date());
-    model.put("message", "张三");
-    return "action/list";
-}
-```
 
 ------
 
 
+#### Oracle数据库建表完整sql
 
-### springboot freemarker不渲染页面返回字符串
+```plsql
+-- CREATE TABLE  创建小程序卡片表
+create table GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD
+(
+  ID_GIM_CLOUD_MINIPROGRAM_CARD     VARCHAR2(32) not null,
+  TEMPLATE_NO                   VARCHAR2(50) not null,
+  DESCRIPTION                   VARCHAR2(200),
+  BELONG_TO                     VARCHAR2(50),
+  TEMPLATE_PRIO                 VARCHAR2(3),
+  LOAD_PERIOD_BEGIN             VARCHAR2(20),
+  LOAD_PERIOD_END               VARCHAR2(10),
+  SEND_PERIOD_BEGIN             VARCHAR2(10),
+  SEND_PERIOD_END               VARCHAR2(10),
+  TITLE                         VARCHAR2(20) not null,
+  URL                           VARCHAR2(50) not null,
+  COVER_URL                     VARCHAR2(50) not null,
+  AGENT_FLAG                    char(2) not null,
+  ID_GIM_AGENT_GROUP            VARCHAR2(32) not null,
+  PUSH_URL_NO                   VARCHAR2(100),
+  WX_TEMPLATE                   VARCHAR2(255),
+  CREATED_BY                    VARCHAR2(100) not null,
+  CREATED_DATE                  DATE not null,
+  UPDATED_BY                    VARCHAR2(100) not null,
+  UPDATED_DATE                  DATE not null
+);
 
-在集成spring boot与freemarker时，Controller不返回渲染的模板页面，而是返回模板字符串，具体如下
 
-```java
-package com.xleiy.blog.controller;
+-- Add comments to the table 
+comment on table GIM_CLOUD_MINIPROGRAM_CARD
+  is '小程序卡片模板表';
+-- Add comments to the columns 
+comment on column GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD.ID_GIM_CLOUD_MINIPROGRAM_CARD
+  is '主键';
+comment on column GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD.TEMPLATE_NO
+  is '模板号';
+comment on column GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD.DESCRIPTION
+  is '模板说明';
+comment on column GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD.BELONG_TO
+  is '所属系统';
+comment on column GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD.TEMPLATE_PRIO
+  is '优先级';
+comment on column GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD.LOAD_PERIOD_BEGIN
+  is '取数时间段开始时间';
+comment on column GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD.LOAD_PERIOD_END
+  is '取数时间段结束时间';
+comment on column GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD.SEND_PERIOD_BEGIN
+  is '发送时间段开始时间';
+comment on column GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD.SEND_PERIOD_END
+  is '发送时间段结束时间';
+comment on column GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD.TITLE
+  is '标题';
+comment on column GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD.URL
+  is '小程序路径';
+comment on column GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD.COVER_URL
+  is '封面url';  
+comment on column GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD.AGENT_FLAG
+  is '坐席端是否可用';
+comment on column GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD.ID_GIM_AGENT_GROUP
+  is '坐席组id';
+comment on column GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD.PUSH_URL_NO
+  is '推送目的地url编号';
+comment on column GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD.WX_TEMPLATE
+  is '对应的微信模板号';
+comment on column GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD.CREATED_BY
+  is '创建人';
+comment on column GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD.CREATED_DATE
+  is '创建时间';
+comment on column GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD.UPDATED_BY
+  is '最后修改人';
+comment on column GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD.UPDATED_DATE
+  is '最后修改时间';
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+ 
 
-import java.util.Date;
-import java.util.Map;
 
-/**
- * @Copyright (c) 2018 spring_boot_blog
- * @项目名称: spring_boot_blog
- * @类名称: WelcomeController
- * @创建时间: 2018/1/3 16:33
- * @类描述：
- */
-@RestController
-public class WelcomeController {
-    @GetMapping("/welcome")
-    public String welcome(Map<String, Object> model) {
-        model.put("time", new Date());
-        model.put("message", "张三");
-        return "welcome";
-    }
-}
+--CREAT PUBLIC SYNONYM  创建同义词
+CREATE PUBLIC SYNONYM GIM_CLOUD_MINIPROGRAM_CARD FOR GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD;
+
+
+-- Create/Recreate primary, unique and foreign key constraints   创建索引
+CREATE unique INDEX GIMDATA.PK_GIM_CLOUD_MINIPROGRAM_CARD ON GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD (ID_GIM_CLOUD_MINIPROGRAM_CARD) INITRANS 16;
+
+
+-- 主键
+ALTER TABLE GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD ADD CONSTRAINT PK_GIM_CLOUD_MINIPROGRAM_CARD PRIMARY KEY (ID_GIM_CLOUD_MINIPROGRAM_CARD)
+USING INDEX GIMDATA.PK_GIM_CLOUD_MINIPROGRAM_CARD;
+
+
+--创建UM,BUTTON_ID联合索引
+create index GIMDATA.INDEX_GRWX_UM_BUTTON_ID ON GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD (UM,BUTTON_ID) INITRANS 16;
+
+-- Grant/Revoke object privileges  授权
+GRANT SELECT,DELETE,UPDATE,INSERT ON GIMDATA.GIM_CLOUD_MINIPROGRAM_CARD TO NETSNCHRMSTJS;
+GRANT SELECT, INSERT, UPDATE, DELETE ON GIM_CLOUD_MINIPROGRAM_CARD TO GIMLOGTMP,GIMROPR,GIMOPR,PUB_TEST,R_GIMDATA_DML;
+GRANT SELECT ON GIM_CLOUD_MINIPROGRAM_CARD TO R_GIMDATA_QRY,DSPDSG,GBDSQP,MISIOCDSG,NEWCHDSG,R_GIMDATA_DEV_QRY,SASCCARDKTL,PA18SHOPESDMKTL,PADHDPSQP;
 
 ```
 
 
-
-#### 问题所在
-
-把@RestController替换为@Controller注解 
-
-**@RestController注解表示返回的内容都是HTTP Content不会被模版引擎处理的** 
-
-下面是RestController的定义
-
-```java
-package org.springframework.web.bind.annotation;
-
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-import org.springframework.stereotype.Controller;
-
-@Target(ElementType.TYPE)
-@Retention(RetentionPolicy.RUNTIME)
-@Documented
-@Controller
-@ResponseBody
-public @interface RestController {
-
-	/**
-	 * The value may indicate a suggestion for a logical component name,
-	 * to be turned into a Spring bean in case of an autodetected component.
-	 * @return the suggested component name, if any (or empty String otherwise)
-	 * @since 4.0.1
-	 */
-	String value() default "";
-
-}
-```

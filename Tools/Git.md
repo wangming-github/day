@@ -22,7 +22,7 @@
 
 
 
-测试SSH配置链接
+##### 测试SSH配置链接
 
   ⚡  ssh -T remotesource    测试配置
 
@@ -88,7 +88,5 @@
       name = wangming-github
       email = myoneray@outlook.com
       到此已经完成了新git账户的配置和切换
-
-    
 
     使用命令：ssh -T git@gitlab.alibaba-inc.com 测试
