@@ -1,4 +1,8 @@
 #### Summary
+* [Nginx](OpenResty\readme.md)
+  *  [OpenResty](OpenResty\OpenResty.md)
+  *  [Nginx](OpenResty/Nginx.md)
+  *  [OpenResty](OpenResty/OpenResty.md)
 * [Snippets](Snippets\readme.md)
   * [Cookie](Snippets\Cookie.md)
   * [java8-Stream](Snippets\java8-Stream.md)
@@ -10,8 +14,5 @@
   *  [PLSQl](Tools\PLSQl.md)
   *  [Emoji](Tools\Emoji.md)  
   *  [SVN](Tools\SVN.md)
-* [Nginx](OpenResty\readme.md)
-  *  [OpenResty](OpenResty\OpenResty.md)
-  *  [Nginx](OpenResty/Nginx.md)
-  *  [OpenResty](OpenResty/OpenResty.md)
+
 
