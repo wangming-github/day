@@ -179,7 +179,7 @@ http {
     
     # 匹配以 /search开始的请求
     location /search {
-      set $searchSvUrl 'http://10.15.97.89:7080/platform/wizards/securities';
+      set $searchSvUrl 'http://127.0.0.1:8080/aaa/bb/c';
       add_header 'Content-Type' 'application/json';
       content_by_lua_block {
         local cln = require "search_api"
@@ -190,11 +190,11 @@ http {
      # 匹配以 /crdb 开始的请求
     location /crdb {
       # 设置请求中的指定字段值
-      set $nodeApiHost '10.15.97.85';
+      set $nodeApiHost '127.0.0.1';
       set $nodeApiPort 8020;
-      set $groupSearchUrl 'http://10.15.97.85:8601/api/group/groupSearch';
-      set $nodeApiNewsUrl 'http://10.15.97.85:8601';
-      set $logUrl 'http://127.0.0.1:80/apiLog/save';
+      set $groupSearchUrl 'http://127.0.0.1:8080/a/b/c';
+      set $nodeApiNewsUrl 'http://127.0.0.1:8080';
+      set $logUrl 'http://127.0.0.1:80/aaa/bb';
       #set $debug false;
       
       # Rewirte配置 break 标记在本条规则匹配完成后，终止匹配，不再匹配后面的规则。
@@ -206,16 +206,16 @@ http {
       }
     }
 
-     # 匹配以 /apiLog 开始的请求 并且将其转发给 http://apiLogServer;
+     # 匹配以 /apiLog 开始的请求 并且将其转发给 http://ServerA;
     location /apiLog {
-      proxy_pass http://apiLogServer;
+      proxy_pass http://ServerA;
       proxy_connect_timeout 30;
     }
     
-     # 匹配以 /logApi 开始的请求 并且将其转发给 http://apiLogServer; 标记在本条规则匹配完成后，终止匹配，不再匹配后面的规则。
+     # 匹配以 /logApi 开始的请求 并且将其转发给 http://ServerB; 标记在本条规则匹配完成后，终止匹配，不再匹配后面的规则。
     location /logApi {
       rewrite ^/logApi/(.*) /$1 break;
-      proxy_pass http://apiLogServer;
+      proxy_pass http://ServerB;
       proxy_connect_timeout 30;
     }
 
