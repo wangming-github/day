@@ -1,0 +1,483 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>java8-Stream · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="LocalDate.html" />
+    
+    
+    <link rel="prev" href="Cookie.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Summary</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Cookie.html">
+            
+                <a href="Cookie.html">
+            
+                    
+                    Cookie
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3" data-path="java8-Stream.html">
+            
+                <a href="java8-Stream.html">
+            
+                    
+                    java8-Stream
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="LocalDate.html">
+            
+                <a href="LocalDate.html">
+            
+                    
+                    LocalDate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="StringUtils.html">
+            
+                <a href="StringUtils.html">
+            
+                    
+                    StringUtils
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../Tools/Git.html">
+            
+                <a href="../Tools/Git.html">
+            
+                    
+                    Git
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../Tools/PLSQl.html">
+            
+                <a href="../Tools/PLSQl.html">
+            
+                    
+                    PLSQl
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../Tools/Emoji.html">
+            
+                <a href="../Tools/Emoji.html">
+            
+                    
+                    Emoji
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >java8-Stream</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p>Java 8 &#x5F15;&#x5165;&#x4E86;&#x5168;&#x65B0;&#x7684; Stream API&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x58F0;&#x660E;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x5904;&#x7406;&#x6570;&#x636E;&#xFF0C;&#x6781;&#x5927;&#x5730;&#x65B9;&#x4FBF;&#x4E86;&#x96C6;&#x5408;&#x64CD;&#x4F5C;&#xFF0C;&#x8BA9;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x66F4;&#x5C11;&#x7684;&#x4EE3;&#x7801;&#x6765;&#x5B9E;&#x73B0;&#x66F4;&#x4E3A;&#x590D;&#x6742;&#x7684;&#x903B;&#x8F91;&#xFF0C;&#x672C;&#x6587;&#x4E3B;&#x8981;&#x5BF9;&#x4E00;&#x4E9B;&#x5E38;&#x7528;&#x7684;Stream API&#x8FDB;&#x884C;&#x4ECB;&#x7ECD;&#x3002;</p>
+<h2 id="&#x4EC0;&#x4E48;&#x662F;stream&#xFF1F;">&#x4EC0;&#x4E48;&#x662F;Stream&#xFF1F;</h2>
+<p>Stream&#xFF08;&#x6D41;&#xFF09;&#x662F;&#x4E00;&#x4E2A;&#x6765;&#x81EA;&#x6570;&#x636E;&#x6E90;&#x7684;&#x5143;&#x7D20;&#x961F;&#x5217;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&#x652F;&#x6301;&#x805A;&#x5408;&#x64CD;&#x4F5C;&#x3002;</p>
+<ul>
+<li>&#x6570;&#x636E;&#x6E90;&#xFF1A;&#x6D41;&#x7684;&#x6570;&#x636E;&#x6765;&#x6E90;&#xFF0C;&#x6784;&#x9020;Stream&#x5BF9;&#x8C61;&#x7684;&#x6570;&#x636E;&#x6E90;&#xFF0C;&#x6BD4;&#x5982;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;List&#x6765;&#x6784;&#x9020;Stream&#x5BF9;&#x8C61;&#xFF0C;&#x8FD9;&#x4E2A;List&#x5C31;&#x662F;&#x6570;&#x636E;&#x6E90;&#xFF1B;</li>
+<li>&#x805A;&#x5408;&#x64CD;&#x4F5C;&#xFF1A;&#x5BF9;Stream&#x5BF9;&#x8C61;&#x8FDB;&#x884C;&#x5904;&#x7406;&#x540E;&#x4F7F;&#x5F97;Stream&#x5BF9;&#x8C61;&#x8FD4;&#x56DE;&#x6307;&#x5B9A;&#x89C4;&#x5219;&#x6570;&#x636E;&#x7684;&#x64CD;&#x4F5C;&#x79F0;&#x4E4B;&#x4E3A;&#x805A;&#x5408;&#x64CD;&#x4F5C;&#xFF0C;&#x6BD4;&#x5982;filter&#x3001;map&#x3001;limit&#x3001;sorted&#x7B49;&#x90FD;&#x662F;&#x805A;&#x5408;&#x64CD;&#x4F5C;&#x3002;</li>
+</ul>
+<h2 id="stream-&#x805A;&#x5408;&#x64CD;&#x4F5C;">Stream &#x805A;&#x5408;&#x64CD;&#x4F5C;</h2>
+<h3 id="&#x80CC;&#x666F;&#x4ECB;&#x7ECD;">&#x80CC;&#x666F;&#x4ECB;&#x7ECD;</h3>
+<p>&#x672C;&#x6587;&#x5C06;&#x4EE5;mall&#x4E2D;&#x7684;UmsPermission&#x5BF9;&#x8C61;&#x4E3A;&#x4F8B;&#x6765;&#x4ECB;&#x7ECD;Stream API&#x7684;&#x5E38;&#x7528;&#x64CD;&#x4F5C;&#x3002;UmsPermission&#x662F;&#x4E00;&#x4E2A;&#x6743;&#x9650;&#x5BF9;&#x8C61;&#xFF0C;&#x4E3B;&#x8981;&#x5206;&#x4E3A;&#x4E09;&#x79CD;&#x6743;&#x9650;&#xFF0C;&#x76EE;&#x5F55;&#x3001;&#x83DC;&#x5355;&#x4EE5;&#x53CA;&#x6309;&#x94AE;&#xFF0C;&#x5BF9;&#x8C61;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UmsPermission</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span> </span>{
+    <span class="hljs-keyword">private</span> Long id;
+
+    <span class="hljs-meta">@ApiModelProperty</span>(value = <span class="hljs-string">&quot;&#x7236;&#x7EA7;&#x6743;&#x9650;id&quot;</span>)
+    <span class="hljs-keyword">private</span> Long pid;
+
+    <span class="hljs-meta">@ApiModelProperty</span>(value = <span class="hljs-string">&quot;&#x540D;&#x79F0;&quot;</span>)
+    <span class="hljs-keyword">private</span> String name;
+
+    <span class="hljs-meta">@ApiModelProperty</span>(value = <span class="hljs-string">&quot;&#x6743;&#x9650;&#x503C;&quot;</span>)
+    <span class="hljs-keyword">private</span> String value;
+
+    <span class="hljs-meta">@ApiModelProperty</span>(value = <span class="hljs-string">&quot;&#x56FE;&#x6807;&quot;</span>)
+    <span class="hljs-keyword">private</span> String icon;
+
+    <span class="hljs-meta">@ApiModelProperty</span>(value = <span class="hljs-string">&quot;&#x6743;&#x9650;&#x7C7B;&#x578B;&#xFF1A;0-&gt;&#x76EE;&#x5F55;&#xFF1B;1-&gt;&#x83DC;&#x5355;&#xFF1B;2-&gt;&#x6309;&#x94AE;&#xFF08;&#x63A5;&#x53E3;&#x7ED1;&#x5B9A;&#x6743;&#x9650;&#xFF09;&quot;</span>)
+    <span class="hljs-keyword">private</span> Integer type;
+
+    <span class="hljs-meta">@ApiModelProperty</span>(value = <span class="hljs-string">&quot;&#x524D;&#x7AEF;&#x8D44;&#x6E90;&#x8DEF;&#x5F84;&quot;</span>)
+    <span class="hljs-keyword">private</span> String uri;
+
+    <span class="hljs-meta">@ApiModelProperty</span>(value = <span class="hljs-string">&quot;&#x542F;&#x7528;&#x72B6;&#x6001;&#xFF1B;0-&gt;&#x7981;&#x7528;&#xFF1B;1-&gt;&#x542F;&#x7528;&quot;</span>)
+    <span class="hljs-keyword">private</span> Integer status;
+
+    <span class="hljs-meta">@ApiModelProperty</span>(value = <span class="hljs-string">&quot;&#x521B;&#x5EFA;&#x65F6;&#x95F4;&quot;</span>)
+    <span class="hljs-keyword">private</span> Date createTime;
+
+    <span class="hljs-meta">@ApiModelProperty</span>(value = <span class="hljs-string">&quot;&#x6392;&#x5E8F;&quot;</span>)
+    <span class="hljs-keyword">private</span> Integer sort;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;
+
+    <span class="hljs-comment">//&#x7701;&#x7565;&#x6240;&#x6709;getter&#x53CA;setter&#x65B9;&#x6CD5;</span>
+}
+</code></pre>
+<h3 id="stream&#x5BF9;&#x8C61;&#x7684;&#x521B;&#x5EFA;">Stream&#x5BF9;&#x8C61;&#x7684;&#x521B;&#x5EFA;</h3>
+<p>Stream&#x5BF9;&#x8C61;&#x5206;&#x4E3A;&#x4E24;&#x79CD;&#xFF0C;&#x4E00;&#x79CD;&#x4E32;&#x884C;&#x7684;&#x6D41;&#x5BF9;&#x8C61;&#xFF0C;&#x4E00;&#x79CD;&#x5E76;&#x884C;&#x7684;&#x6D41;&#x5BF9;&#x8C61;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-comment">// permissionList&#x6307;&#x6240;&#x6709;&#x6743;&#x9650;&#x5217;&#x8868;</span>
+<span class="hljs-comment">// &#x4E3A;&#x96C6;&#x5408;&#x521B;&#x5EFA;&#x4E32;&#x884C;&#x6D41;&#x5BF9;&#x8C61;</span>
+Stream&lt;UmsPermission&gt; stream = permissionList.stream();
+<span class="hljs-comment">// &#x4E3A;&#x96C6;&#x5408;&#x521B;&#x5EFA;&#x5E76;&#x884C;&#x6D41;&#x5BF9;&#x8C61;</span>
+tream&lt;UmsPermission&gt; parallelStream = permissionList.parallelStream();
+</code></pre>
+<h3 id="filter">filter</h3>
+<p>&#x5BF9;Stream&#x4E2D;&#x7684;&#x5143;&#x7D20;&#x8FDB;&#x884C;&#x8FC7;&#x6EE4;&#x64CD;&#x4F5C;&#xFF0C;&#x5F53;&#x8BBE;&#x7F6E;&#x6761;&#x4EF6;&#x8FD4;&#x56DE;true&#x65F6;&#x8FD4;&#x56DE;&#x76F8;&#x5E94;&#x5143;&#x7D20;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-comment">// &#x83B7;&#x53D6;&#x6743;&#x9650;&#x7C7B;&#x578B;&#x4E3A;&#x76EE;&#x5F55;&#x7684;&#x6743;&#x9650;</span>
+List&lt;UmsPermission&gt; dirList = permissionList.stream()
+    .filter(permission -&gt; permission.getType() == <span class="hljs-number">0</span>)
+    .collect(Collectors.toList());
+</code></pre>
+<h3 id="map">map</h3>
+<p>&#x5BF9;Stream&#x4E2D;&#x7684;&#x5143;&#x7D20;&#x8FDB;&#x884C;&#x8F6C;&#x6362;&#x5904;&#x7406;&#x540E;&#x83B7;&#x53D6;&#x3002;&#x6BD4;&#x5982;&#x53EF;&#x4EE5;&#x5C06;UmsPermission&#x5BF9;&#x8C61;&#x8F6C;&#x6362;&#x6210;Long&#x5BF9;&#x8C61;&#x3002; &#x6211;&#x4EEC;&#x7ECF;&#x5E38;&#x4F1A;&#x6709;&#x8FD9;&#x6837;&#x7684;&#x9700;&#x6C42;&#xFF1A;&#x9700;&#x8981;&#x628A;&#x67D0;&#x4E9B;&#x5BF9;&#x8C61;&#x7684;id&#x63D0;&#x53D6;&#x51FA;&#x6765;&#xFF0C;&#x7136;&#x540E;&#x6839;&#x636E;&#x8FD9;&#x4E9B;id&#x53BB;&#x67E5;&#x8BE2;&#x5176;&#x4ED6;&#x5BF9;&#x8C61;&#xFF0C;&#x8FD9;&#x65F6;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6B64;&#x65B9;&#x6CD5;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-comment">// &#x83B7;&#x53D6;&#x6240;&#x6709;&#x6743;&#x9650;&#x7684;id&#x7EC4;&#x6210;&#x7684;&#x96C6;&#x5408;</span>
+List&lt;Long&gt; idList = permissionList.stream()
+    .map(permission -&gt; permission.getId())
+    .collect(Collectors.toList());
+</code></pre>
+<h3 id="limit">limit</h3>
+<p>&#x4ECE;Stream&#x4E2D;&#x83B7;&#x53D6;&#x6307;&#x5B9A;&#x6570;&#x91CF;&#x7684;&#x5143;&#x7D20;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-comment">// &#x83B7;&#x53D6;&#x524D;5&#x4E2A;&#x6743;&#x9650;&#x5BF9;&#x8C61;&#x7EC4;&#x6210;&#x7684;&#x96C6;&#x5408;</span>
+List&lt;UmsPermission&gt; firstFiveList = permissionList.stream()
+    .limit(<span class="hljs-number">5</span>)
+    .collect(Collectors.toList());
+</code></pre>
+<h3 id="count">count</h3>
+<p>&#x4EC5;&#x83B7;&#x53D6;Stream&#x4E2D;&#x5143;&#x7D20;&#x7684;&#x4E2A;&#x6570;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-comment">// count&#x64CD;&#x4F5C;&#xFF1A;&#x83B7;&#x53D6;&#x6240;&#x6709;&#x76EE;&#x5F55;&#x6743;&#x9650;&#x7684;&#x4E2A;&#x6570;</span>
+<span class="hljs-keyword">long</span> dirPermissionCount = permissionList.stream()
+    .filter(permission -&gt; permission.getType() == <span class="hljs-number">0</span>)
+    .count();
+</code></pre>
+<h3 id="sorted">sorted</h3>
+<p>&#x5BF9;Stream&#x4E2D;&#x5143;&#x7D20;&#x6309;&#x6307;&#x5B9A;&#x89C4;&#x5219;&#x8FDB;&#x884C;&#x6392;&#x5E8F;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-comment">// &#x5C06;&#x6240;&#x6709;&#x6743;&#x9650;&#x6309;&#x5148;&#x76EE;&#x5F55;&#x540E;&#x83DC;&#x5355;&#x518D;&#x6309;&#x94AE;&#x7684;&#x987A;&#x5E8F;&#x6392;&#x5E8F;</span>
+List&lt;UmsPermission&gt; sortedList = permissionList.stream()
+    .sorted((permission1,permission2)-&gt;{<span class="hljs-keyword">return</span> permission1.getType().compareTo(permission2.getType());})
+    .collect(Collectors.toList());
+</code></pre>
+<h3 id="skip">skip</h3>
+<p>&#x8DF3;&#x8FC7;&#x6307;&#x5B9A;&#x4E2A;&#x6570;&#x7684;Stream&#x4E2D;&#x5143;&#x7D20;&#xFF0C;&#x83B7;&#x53D6;&#x540E;&#x9762;&#x7684;&#x5143;&#x7D20;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-comment">// &#x8DF3;&#x8FC7;&#x524D;5&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x8FD4;&#x56DE;&#x540E;&#x9762;&#x7684;</span>
+List&lt;UmsPermission&gt; skipList = permissionList.stream()
+    .skip(<span class="hljs-number">5</span>)
+    .collect(Collectors.toList());
+</code></pre>
+<h3 id="&#x7528;collect&#x65B9;&#x6CD5;&#x5C06;list&#x8F6C;&#x6210;map">&#x7528;collect&#x65B9;&#x6CD5;&#x5C06;List&#x8F6C;&#x6210;map</h3>
+<p>&#x6709;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x53CD;&#x590D;&#x5BF9;List&#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#x6839;&#x636E;id&#x8FDB;&#x884C;&#x67E5;&#x8BE2;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5148;&#x628A;&#x8BE5;List&#x8F6C;&#x6362;&#x4E3A;&#x4EE5;id&#x4E3A;key&#x7684;map&#x7ED3;&#x6784;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x901A;&#x8FC7;map.get(id)&#x6765;&#x83B7;&#x53D6;&#x5BF9;&#x8C61;&#xFF0C;&#x8FD9;&#x6837;&#x6BD4;&#x8F83;&#x65B9;&#x4FBF;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-comment">// &#x5C06;&#x6743;&#x9650;&#x5217;&#x8868;&#x4EE5;id&#x4E3A;key&#xFF0C;&#x4EE5;&#x6743;&#x9650;&#x5BF9;&#x8C61;&#x4E3A;&#x503C;&#x8F6C;&#x6362;&#x6210;map</span>
+Map&lt;Long, UmsPermission&gt; permissionMap = permissionList.stream()
+    .collect(Collectors.toMap(permission -&gt; permission.getId(), permission -&gt; permission));
+</code></pre>
+<h2 id="&#x5E94;&#x7528;">&#x5E94;&#x7528;</h2>
+<blockquote>
+<p>&#x6211;&#x4EEC;&#x7ECF;&#x5E38;&#x4F1A;&#x6709;&#x8FD4;&#x56DE;&#x6811;&#x5F62;&#x7ED3;&#x6784;&#x6570;&#x636E;&#x7684;&#x9700;&#x6C42;&#x3002;&#x6BD4;&#x5982;&#x8FD9;&#x91CC;&#x7684;&#x6743;&#x9650;&#xFF0C;&#x7B2C;&#x4E00;&#x5C42;&#x662F;&#x76EE;&#x5F55;&#x6743;&#x9650;&#xFF0C;&#x76EE;&#x5F55;&#x6743;&#x9650;&#x4E4B;&#x4E0B;&#x6709;&#x83DC;&#x5355;&#x6743;&#x9650;&#xFF0C;&#x83DC;&#x5355;&#x6743;&#x9650;&#x4E4B;&#x4E0B;&#x6709;&#x6309;&#x94AE;&#x6743;&#x9650;&#x3002;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x8981;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x96C6;&#x5408;&#xFF0C;&#x5305;&#x542B;&#x76EE;&#x5F55;&#x6743;&#x9650;&#xFF0C;&#x76EE;&#x5F55;&#x6743;&#x9650;&#x4E0B;&#x9762;&#x5D4C;&#x5957;&#x83DC;&#x5355;&#x6743;&#x9650;&#xFF0C;&#x83DC;&#x5355;&#x6743;&#x9650;&#x4E0B;&#x5D4C;&#x5957;&#x6309;&#x94AE;&#x6743;&#x9650;&#x3002;&#x4F7F;&#x7528;Stream API&#x53EF;&#x4EE5;&#x5F88;&#x65B9;&#x4FBF;&#x7684;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x3002;</p>
+</blockquote>
+<p><strong>&#x6CE8;&#x610F;&#xFF1A;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x7684;&#x6743;&#x9650;&#x4E0A;&#x4E0B;&#x7EA7;&#x4E4B;&#x95F4;&#x4EE5;pid&#x6765;&#x5173;&#x8054;&#xFF0C;pid&#x662F;&#x6307;&#x4E0A;&#x4E00;&#x7EA7;&#x6743;&#x9650;&#x7684;id&#xFF0C;&#x9876;&#x7EA7;&#x6743;&#x9650;&#x7684;id&#x4E3A;0&#x3002;</strong></p>
+<h3 id="&#x5B9A;&#x4E49;&#x5305;&#x542B;&#x4E0B;&#x7EA7;&#x6743;&#x9650;&#x7684;&#x5BF9;&#x8C61;">&#x5B9A;&#x4E49;&#x5305;&#x542B;&#x4E0B;&#x7EA7;&#x6743;&#x9650;&#x7684;&#x5BF9;&#x8C61;</h3>
+<p>&#x7EE7;&#x627F;&#x81EA;UmsPermission&#x5BF9;&#x8C61;&#xFF0C;&#x4E4B;&#x589E;&#x52A0;&#x4E86;&#x4E00;&#x4E2A;children&#x5C5E;&#x6027;&#xFF0C;&#x7528;&#x4E8E;&#x5B58;&#x50A8;&#x4E0B;&#x7EA7;&#x6743;&#x9650;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+ * Created by macro on 2018/9/30.
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UmsPermissionNode</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">UmsPermission</span> </span>{
+    <span class="hljs-keyword">private</span> List&lt;UmsPermissionNode&gt; children;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;UmsPermissionNode&gt; <span class="hljs-title">getChildren</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> children;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setChildren</span><span class="hljs-params">(List&lt;UmsPermissionNode&gt; children)</span> </span>{
+        <span class="hljs-keyword">this</span>.children = children;
+    }
+}
+</code></pre>
+<h3 id="&#x5B9A;&#x4E49;&#x83B7;&#x53D6;&#x6811;&#x5F62;&#x7ED3;&#x6784;&#x7684;&#x65B9;&#x6CD5;">&#x5B9A;&#x4E49;&#x83B7;&#x53D6;&#x6811;&#x5F62;&#x7ED3;&#x6784;&#x7684;&#x65B9;&#x6CD5;</h3>
+<p>&#x6211;&#x4EEC;&#x5148;&#x8FC7;&#x6EE4;&#x51FA;pid&#x4E3A;0&#x7684;&#x9876;&#x7EA7;&#x6743;&#x9650;&#xFF0C;&#x7136;&#x540E;&#x7ED9;&#x6BCF;&#x4E2A;&#x9876;&#x7EA7;&#x6743;&#x9650;&#x8BBE;&#x7F6E;&#x5176;&#x5B50;&#x7EA7;&#x6743;&#x9650;&#xFF0C;covert&#x65B9;&#x6CD5;&#x7684;&#x4E3B;&#x8981;&#x7528;&#x9014;&#x5C31;&#x662F;&#x4ECE;&#x6240;&#x6709;&#x6743;&#x9650;&#x4E2D;&#x627E;&#x51FA;&#x76F8;&#x5E94;&#x6743;&#x9650;&#x7684;&#x5B50;&#x7EA7;&#x6743;&#x9650;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;UmsPermissionNode&gt; <span class="hljs-title">treeList</span><span class="hljs-params">()</span> </span>{
+    List&lt;UmsPermission&gt; permissionList = permissionMapper.selectByExample(<span class="hljs-keyword">new</span> UmsPermissionExample());
+    List&lt;UmsPermissionNode&gt; result = permissionList.stream()
+            .filter(permission -&gt; permission.getPid().equals(<span class="hljs-number">0L</span>))
+            .map(permission -&gt; covert(permission, permissionList)).collect(Collectors.toList());
+    <span class="hljs-keyword">return</span> result;
+}
+</code></pre>
+<h3 id="&#x4E3A;&#x6BCF;&#x4E2A;&#x6743;&#x9650;&#x8BBE;&#x7F6E;&#x5B50;&#x7EA7;&#x6743;&#x9650;">&#x4E3A;&#x6BCF;&#x4E2A;&#x6743;&#x9650;&#x8BBE;&#x7F6E;&#x5B50;&#x7EA7;&#x6743;&#x9650;</h3>
+<p>&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x4F7F;&#x7528;filter&#x64CD;&#x4F5C;&#x6765;&#x8FC7;&#x6EE4;&#x51FA;&#x6BCF;&#x4E2A;&#x6743;&#x9650;&#x7684;&#x5B50;&#x7EA7;&#x6743;&#x9650;&#xFF0C;&#x7531;&#x4E8E;&#x5B50;&#x7EA7;&#x6743;&#x9650;&#x4E0B;&#x9762;&#x53EF;&#x80FD;&#x8FD8;&#x4F1A;&#x6709;&#x5B50;&#x7EA7;&#x6743;&#x9650;&#xFF0C;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x9012;&#x5F52;&#x6765;&#x89E3;&#x51B3;&#x3002;&#x4F46;&#x662F;&#x9012;&#x5F52;&#x64CD;&#x4F5C;&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x505C;&#x6B62;&#xFF0C;&#x8FD9;&#x91CC;&#x628A;&#x9012;&#x5F52;&#x8C03;&#x7528;&#x65B9;&#x6CD5;&#x653E;&#x5230;&#x4E86;map&#x64CD;&#x4F5C;&#x4E2D;&#x53BB;&#xFF0C;&#x5F53;&#x6CA1;&#x6709;&#x5B50;&#x7EA7;&#x6743;&#x9650;&#x65F6;filter&#x4E0B;&#x7684;map&#x64CD;&#x4F5C;&#x4FBF;&#x4E0D;&#x4F1A;&#x518D;&#x6267;&#x884C;&#xFF0C;&#x4ECE;&#x800C;&#x505C;&#x6B62;&#x9012;&#x5F52;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+* &#x5C06;&#x6743;&#x9650;&#x8F6C;&#x6362;&#x4E3A;&#x5E26;&#x6709;&#x5B50;&#x7EA7;&#x7684;&#x6743;&#x9650;&#x5BF9;&#x8C61;
+* &#x5F53;&#x627E;&#x4E0D;&#x5230;&#x5B50;&#x7EA7;&#x6743;&#x9650;&#x7684;&#x65F6;&#x5019;map&#x64CD;&#x4F5C;&#x4E0D;&#x4F1A;&#x518D;&#x9012;&#x5F52;&#x8C03;&#x7528;covert
+*/</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> UmsPermissionNode <span class="hljs-title">covert</span><span class="hljs-params">(UmsPermission permission, List&lt;UmsPermission&gt; permissionList)</span> </span>{
+    UmsPermissionNode node = <span class="hljs-keyword">new</span> UmsPermissionNode();
+    BeanUtils.copyProperties(permission, node);
+    List&lt;UmsPermissionNode&gt; children = permissionList.stream()
+           .filter(subPermission -&gt; subPermission.getPid().equals(permission.getId()))
+           .map(subPermission -&gt; covert(subPermission, permissionList)).collect(Collectors.toList());
+    node.setChildren(children);
+    <span class="hljs-keyword">return</span> node;
+}
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Cookie.html" class="navigation navigation-prev " aria-label="Previous page: Cookie">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="LocalDate.html" class="navigation navigation-next " aria-label="Next page: LocalDate">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"java8-Stream","level":"1.3","depth":1,"next":{"title":"LocalDate","level":"1.4","depth":1,"path":"Snippets/LocalDate.md","ref":"Snippets/LocalDate.md","articles":[]},"previous":{"title":"Cookie","level":"1.2","depth":1,"path":"Snippets/Cookie.md","ref":"Snippets/Cookie.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Snippets/java8-Stream.md","mtime":"2020-05-19T08:22:54.863Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-19T08:23:08.220Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
